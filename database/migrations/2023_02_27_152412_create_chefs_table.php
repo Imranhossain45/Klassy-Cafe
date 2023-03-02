@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('chefs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->integer('phone');
+            $table->string('designation');
+            $table->string('photo');
+            $table->integer('chef_id');
+            $table->integer('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
