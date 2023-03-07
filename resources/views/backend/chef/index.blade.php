@@ -1,20 +1,20 @@
 @extends('layouts.backend')
 @section('title', 'All Chefs')
 @section('content')
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center">
       <div class=" col-lg-12">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
 
           <li class="nav-item" role="presentation">
-            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#active"><b>Active</b></button>
+            <button class="nav-link active" data-toggle="tab" data-target="#active"><b>Active</b></button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#draft"><b>Draft</b></button>
+            <button class="nav-link" data-toggle="tab" data-target="#draft"><b>Draft</b></button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#trash"><b>Trash</b></button>
+            <button class="nav-link" data-toggle="tab" data-target="#trash"><b>Trash</b></button>
           </li>
         </ul>
 
@@ -39,7 +39,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody class=" table-responsive">
+                  <tbody class=" table">
 
                     @foreach ($activeChefs as $chef)
                       <tr>
@@ -91,7 +91,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody class=" table-responsive">
+                  <tbody class=" table">
 
                     @foreach ($draftChefs as $chef)
                       <tr>
@@ -143,7 +143,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody class=" table-responsive">
+                  <tbody class=" table">
 
                     @foreach ($trashChefs as $chef)
                       <tr>
