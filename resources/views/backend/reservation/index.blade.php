@@ -39,7 +39,7 @@
                     <a href="{{ route('backend.reservation.status', $reservation->id) }}"
                             class=" btn {{ $reservation->status == 'processing' ? 'btn btn-success' : 'btn btn-warning' }}">{{ $reservation->status == 'processing' ? 'Aprove' : 'Processing' }}</a>
 
-                    <a href="" class="btn btn-danger">Cancel</a>
+                    <a href="{{ route('backend.reservation.delete',$reservation->id) }}" class="btn btn-danger" onclick="return confirm('are you sure to Cancel?')">Cancel</a>
                   </td>
                 </tr>
                 @endforeach

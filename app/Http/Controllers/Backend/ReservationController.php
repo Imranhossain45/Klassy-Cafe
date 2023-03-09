@@ -130,7 +130,8 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        
+        
     }
     public function status(Reservation $reservation)
     {
@@ -152,11 +153,10 @@ class ReservationController extends Controller
             return view('backend.reservation.myreservation', compact('myreservations'));
         }
     }
-    public function permDelete($id)
+    public function delete($id)
     {
-        $myreservation = Reservation::where('id', Auth::user()->id)->find($id);
-        $myreservation->forceDelete();
-
+        $myreservation = Reservation::find($id);
+        $myreservation->forceDelete($id);
         return back()->with('success','Reservation Deleted');
     }
 }

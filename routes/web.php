@@ -107,10 +107,10 @@ Route::middleware(['auth'])->group(
                 Route::post('/reservation/store', 'store')->name('store');
                 Route::get('/reservation/edit/{reservation}', 'edit')->name('edit');
                 Route::post('/reservation/update/{reservation}', 'update')->name('update');
-                Route::get('/reservation/destroy/{reservation}', 'destroy')->name('trash');
+                Route::get('/reservation/destroy/{reservation}', 'destroy')->name('cancel');
                 Route::get('/reservation/status/{reservation}', 'status')->name('status');
                 Route::get('/reservation/reStore/{id}', 'reStore')->name('reStore');
-                Route::get('/reservation/permDelete/{id}', 'permDelete')->name('permDelete');
+                Route::get('/reservation/delete/{id}', 'delete')->name('delete');
                 Route::get('/reservation/myreservation', 'myreservation')->name('myreservation');
             }
         );

@@ -35,7 +35,7 @@
                 <td>{{ $myreservation->message }}</td>
                 <td>{{ Str::limit($myreservation->status, 20, '...') }}</td>
                 <td>
-                  <a href="{{ route('backend.reservation.permDelete',$myreservation->id) }}" class="btn btn-danger">Delete</a>
+                  <a href="{{ route('backend.reservation.delete',$myreservation->id) }}" class="btn btn-danger">Delete</a>
                 </td>
               </tr>
               @endforeach
