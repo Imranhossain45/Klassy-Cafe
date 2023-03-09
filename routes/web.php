@@ -29,12 +29,16 @@ Route::controller(HomeController::class)->name('frontend.')->group(function () {
 
     Route::get('/', 'index')->name('index');
     Route::get('/chefs', 'chef')->name('chef');
+    Route::get('/menu', 'menu')->name('menu');
+    Route::get('/about-us', 'about')->name('about');
+    Route::get('/contact-us', 'contact')->name('contact');
+    Route::post('/contactStore', 'contactStore')->name('contactStore');
 });
 
 
 Route::middleware(['auth'])->group(
     function () {
-        Route::get('/home', [HomeController::class, 'home'])->name('home');
+        Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth', 'verified');
 
         Route::controller(ChefController::class)->name('backend.chef.')->group(function () {
             Route::get('/chef', 'index')->name('index');
@@ -105,8 +109,9 @@ Route::middleware(['auth'])->group(
                 Route::post('/reservation/update/{reservation}', 'update')->name('update');
                 Route::get('/reservation/destroy/{reservation}', 'destroy')->name('trash');
                 Route::get('/reservation/status/{reservation}', 'status')->name('status');
-                Route::get('/cake/reStore/{id}', 'reStore')->name('reStore');
+                Route::get('/reservation/reStore/{id}', 'reStore')->name('reStore');
                 Route::get('/reservation/permDelete/{id}', 'permDelete')->name('permDelete');
+                Route::get('/reservation/myreservation', 'myreservation')->name('myreservation');
             }
         );
     }
@@ -114,4 +119,4 @@ Route::middleware(['auth'])->group(
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);

@@ -38,6 +38,8 @@
                     <a href="{{ route('backend.reservation.edit', $reservation->id) }}" class=" btn btn-sm btn-info">Edit</a>
                     <a href="{{ route('backend.reservation.status', $reservation->id) }}"
                             class=" btn {{ $reservation->status == 'processing' ? 'btn btn-success' : 'btn btn-warning' }}">{{ $reservation->status == 'processing' ? 'Aprove' : 'Processing' }}</a>
+
+                    <a href="" class="btn btn-danger">Cancel</a>
                   </td>
                 </tr>
                 @endforeach

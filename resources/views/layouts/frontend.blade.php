@@ -11,8 +11,8 @@
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-
-  <title>Klassy Cafe - Restaurant HTML Template</title>
+  
+  <title>Klassy Cafe</title>
   <!--
     
 TemplateMo 558 Klassy Cafe
@@ -30,6 +30,8 @@ https://templatemo.com/tm-558-klassy-cafe
   <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl-carousel.css') }}">
 
   <link rel="stylesheet" href="{{ asset('frontend/assets/css/lightbox.css') }}">
+  
+
 
 </head>
 
@@ -53,14 +55,14 @@ https://templatemo.com/tm-558-klassy-cafe
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="{{ route('frontend.index') }}" class="logo">
               <img src="frontend/assets/images/klassy-logo.png" align="klassy cafe html template">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="#about">About</a></li>
+              <li class="scroll-to-section"><a href="{{ route('frontend.index') }}" class="active">Home</a></li>
+
 
               <!--
                             <li class="submenu">
@@ -72,9 +74,9 @@ https://templatemo.com/tm-558-klassy-cafe
                                 </ul>
                             </li>
                         -->
-              <li class="scroll-to-section"><a href="#menu">Menu</a></li>
-              <li class="scroll-to-section"><a href="#chefs">Chefs</a></li>
-              <li class="submenu">
+              <li class="scroll-to-section"><a href="{{ route('frontend.menu') }}">Menu</a></li>
+              <li class="scroll-to-section"><a href="{{ route('frontend.chef') }}">Chefs</a></li>
+              {{-- <li class="submenu">
                 <a href="javascript:;">Features</a>
                 <ul>
                   <li><a href="#">Features Page 1</a></li>
@@ -82,9 +84,50 @@ https://templatemo.com/tm-558-klassy-cafe
                   <li><a href="#">Features Page 3</a></li>
                   <li><a href="#">Features Page 4</a></li>
                 </ul>
-              </li>
+              </li> --}}
               <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
-              <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
+              <li class="scroll-to-section"><a href="{{ route('frontend.about') }}">About</a></li>
+              <li class="scroll-to-section"><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
+              <li class="scroll-to-section">
+                <!-- Authentication Links -->
+                @auth
+                <li class="scroll-to-section">
+                  <a class="" href="{{ route('backend.reservation.myreservation') }}">My Resevation</a>
+                </li>
+                <li class="scroll-to-section">
+                  <div class="dropdown ">
+                    <button class="dropdown-toggle btn btn-success" type="button" data-toggle="dropdown" aria-expanded="false">
+                      {{ Auth::user()->name }}
+                    </button>
+                    <div class="dropdown-menu ">
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+
+                        {{ __('Logout') }}
+
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                      </form>
+                    </div>
+                  </div>
+                </li>
+              @else
+                @if (Route::has('login'))
+                  <li class="scroll-to-section">
+                    <a class="" href="{{ route('login') }}">Login</a>
+                  </li>
+                @endif
+
+                @if (Route::has('register'))
+                  <li class="scroll-to-section">
+                    <a class="" href="{{ route('register') }}">Register</a>
+                  </li>
+                @endif
+              @endauth
+              </li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>

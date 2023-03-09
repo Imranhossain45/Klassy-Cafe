@@ -14,7 +14,7 @@
       <div class="owl-menu-item owl-carousel">
         @foreach ($activeCake_pastry as $cake_pastry)
           <div class="item">
-            <div class='card card1'>
+            <div class='card' style="background-image: url({{ url('storage/cake_pastry/'.$cake_pastry->photo) }});">
               <div class="price">
                 <h6>${{ $cake_pastry->price }}</h6>
               </div>

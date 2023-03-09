@@ -1,4 +1,6 @@
-<section class="section" id="chefs">
+@extends('layouts.frontend')
+@section('content')
+  <section class="section" id="chefs">
   <div class="container">
     <div class="row">
       <div class="col-lg-4 offset-lg-4 text-center">
@@ -31,3 +33,5 @@
     </div>
   </div>
 </section>
+
+@endsection

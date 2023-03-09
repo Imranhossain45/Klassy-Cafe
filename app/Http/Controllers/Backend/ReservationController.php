@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -39,6 +40,7 @@ class ReservationController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'user_id' => 'nullable',
             'email' => 'nullable',
             'phone' => 'required|integer',
             'guest' => 'required',
@@ -47,9 +49,10 @@ class ReservationController extends Controller
             'message' => 'nullable|max:500',
             'status' => 'processing'
         ]);
-        
+
         Reservation::create([
             'name' => $request->name,
+            'user_id' => Auth::user()->id,
             'email' => $request->email,
             'phone' => $request->phone,
             'guest' => $request->guest,
@@ -58,7 +61,7 @@ class ReservationController extends Controller
             'message' => $request->message,
             'status' => 'processing'
         ]);
-        return back()->with('success','Reservation Added!');
+        return back()->with('success', 'Reservation Added!');
     }
 
     /**
@@ -80,7 +83,7 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        return view('backend.reservation.edit',compact('reservation'));
+        return view('backend.reservation.edit', compact('reservation'));
     }
 
     /**
@@ -94,6 +97,7 @@ class ReservationController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'user_id' => 'nullable',
             'email' => 'nullable',
             'phone' => 'required|integer',
             'guest' => 'required',
@@ -103,15 +107,16 @@ class ReservationController extends Controller
             'status' => 'processing'
         ]);
 
-        
-                $reservation->name= $request->name;
-                $reservation->email= $request->email;
-                $reservation->phone= $request->phone;
-                $reservation->guest= $request->guest;
-                $reservation->date= $request->date;
-                $reservation->time= $request->time;
-                $reservation->message= $request->message;
-                $reservation->save();
+
+        $reservation->name = $request->name;
+        $reservation->user_id = Auth::user()->id;
+        $reservation->email = $request->email;
+        $reservation->phone = $request->phone;
+        $reservation->guest = $request->guest;
+        $reservation->date = $request->date;
+        $reservation->time = $request->time;
+        $reservation->message = $request->message;
+        $reservation->save();
 
 
         return redirect(route('backend.reservation.index'))->with('success', 'Reservation Edited!');
@@ -137,5 +142,21 @@ class ReservationController extends Controller
             $reservation->save();
         }
         return back()->with('success', $reservation->status == 'approved' ? 'Reservation Approved' : 'Reservation Processing');
+    }
+
+    public function myreservation()
+    {
+        if (Auth::id()) {
+            $userid = Auth::user()->id;
+            $myreservations = Reservation::where('user_id', $userid)->get();
+            return view('backend.reservation.myreservation', compact('myreservations'));
+        }
+    }
+    public function permDelete($id)
+    {
+        $myreservation = Reservation::where('id', Auth::user()->id)->find($id);
+        $myreservation->forceDelete();
+
+        return back()->with('success','Reservation Deleted');
     }
 }
