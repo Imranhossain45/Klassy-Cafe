@@ -11,6 +11,7 @@
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
   
   <title>Klassy Cafe</title>
   <!--
@@ -30,8 +31,9 @@ https://templatemo.com/tm-558-klassy-cafe
   <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl-carousel.css') }}">
 
   <link rel="stylesheet" href="{{ asset('frontend/assets/css/lightbox.css') }}">
+  <link rel="stylesheet" href="{{ asset('frontend/assets/css/woocommerce-2.css') }}">
   
-
+@yield('style')
 
 </head>
 
@@ -56,7 +58,7 @@ https://templatemo.com/tm-558-klassy-cafe
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="{{ route('frontend.index') }}" class="logo">
-              <img src="frontend/assets/images/klassy-logo.png" align="klassy cafe html template">
+              <img src="{{ asset('frontend/assets/images/klassy-logo.png') }}" align="klassy cafe html template">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
@@ -88,9 +90,11 @@ https://templatemo.com/tm-558-klassy-cafe
               <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
               <li class="scroll-to-section"><a href="{{ route('frontend.about') }}">About</a></li>
               <li class="scroll-to-section"><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
+              
               <li class="scroll-to-section">
                 <!-- Authentication Links -->
                 @auth
+                <li class="scroll-to-section"><a href="{{ route('frontend.cart.index') }}">My Cart</a></li>
                 <li class="scroll-to-section">
                   <a class="" href="{{ route('backend.reservation.myreservation') }}">My Resevation</a>
                 </li>
@@ -143,6 +147,7 @@ https://templatemo.com/tm-558-klassy-cafe
   @yield('content')
   <!-- ***** Footer Start ***** -->
   <footer>
+    
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-xs-12">
@@ -190,6 +195,7 @@ https://templatemo.com/tm-558-klassy-cafe
   <script src="{{ asset('frontend/assets/js/slick.js') }}"></script>
   <script src="{{ asset('frontend/assets/js/lightbox.js') }}"></script>
   <script src="{{ asset('frontend/assets/js/isotope.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
 
   <!-- Global Init -->
   <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
@@ -208,6 +214,7 @@ https://templatemo.com/tm-558-klassy-cafe
       });
     });
   </script>
+  @yield('script')
 </body>
 
 </html>

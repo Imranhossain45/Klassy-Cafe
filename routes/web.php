@@ -1,14 +1,20 @@
 <?php
 
-use App\Http\Controllers\Backend\BreakfastController;
-use App\Http\Controllers\Backend\Cake_PastryController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\ChefController;
-use App\Http\Controllers\Backend\DinnerController;
 use App\Http\Controllers\Backend\LunchController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\DinnerController;
+use App\Http\Controllers\Backend\BreakfastController;
+use App\Http\Controllers\Backend\InventoryController;
+use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\Backend\Cake_PastryController;
 use App\Http\Controllers\Backend\ReservationController;
+use App\Http\Controllers\Backend\ShippingChargeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +57,8 @@ Route::middleware(['auth'])->group(
             Route::get('/chef/reStore/{id}', 'reStore')->name('reStore');
             Route::get('/chef/permDelete/{id}', 'permDelete')->name('delete');
         });
-        Route::controller(BreakfastController::class)->name('backend.breakfast.')->group(function () {
+        Route::controller(BreakfastController::class)->name('backend.breakfast.')->group(
+            function () {
                 Route::get('/breakfast', 'index')->name('index');
                 Route::get('/breakfast/create', 'create')->name('create');
                 Route::post('/breakfast/store', 'store')->name('store');
@@ -61,9 +68,10 @@ Route::middleware(['auth'])->group(
                 Route::get('/breakfast/status/{breakfast}', 'status')->name('status');
                 Route::get('/breakfast/reStore/{id}', 'reStore')->name('reStore');
                 Route::get('/breakfast/permDelete/{id}', 'permDelete')->name('permDelete');
-        }
+            }
         );
-        Route::controller(LunchController::class)->name('backend.lunch.')->group(function () {
+        Route::controller(LunchController::class)->name('backend.lunch.')->group(
+            function () {
                 Route::get('/lunch', 'index')->name('index');
                 Route::get('/lunch/create', 'create')->name('create');
                 Route::post('/lunch/store', 'store')->name('store');
@@ -73,9 +81,10 @@ Route::middleware(['auth'])->group(
                 Route::get('/lunch/status/{lunch}', 'status')->name('status');
                 Route::get('/lunch/reStore/{id}', 'reStore')->name('reStore');
                 Route::get('/lunch/permDelete/{id}', 'permDelete')->name('permDelete');
-        }
+            }
         );
-        Route::controller(DinnerController::class)->name('backend.dinner.')->group(function () {
+        Route::controller(DinnerController::class)->name('backend.dinner.')->group(
+            function () {
                 Route::get('/dinner', 'index')->name('index');
                 Route::get('/dinner/create', 'create')->name('create');
                 Route::post('/dinner/store', 'store')->name('store');
@@ -85,10 +94,11 @@ Route::middleware(['auth'])->group(
                 Route::get('/dinner/status/{dinner}', 'status')->name('status');
                 Route::get('/dinner/reStore/{id}', 'reStore')->name('reStore');
                 Route::get('/dinner/permDelete/{id}', 'permDelete')->name('permDelete');
-        }
+            }
         );
-        
-        Route::controller(Cake_PastryController::class)->name('backend.cake_pastry.')->group(function () {
+
+        Route::controller(Cake_PastryController::class)->name('backend.cake_pastry.')->group(
+            function () {
                 Route::get('/cake_pastry', 'index')->name('index');
                 Route::get('/cake_pastry/create', 'create')->name('create');
                 Route::post('/cake_pastry/store', 'store')->name('store');
@@ -98,7 +108,7 @@ Route::middleware(['auth'])->group(
                 Route::get('/cake_pastry/status/{cake_Pastry}', 'status')->name('status');
                 Route::get('/cake/reStore/{id}', 'reStore')->name('reStore');
                 Route::get('/cake_pastry/permDelete/{id}', 'permDelete')->name('permDelete');
-        }
+            }
         );
         Route::controller(ReservationController::class)->name('backend.reservation.')->group(
             function () {
@@ -114,8 +124,63 @@ Route::middleware(['auth'])->group(
                 Route::get('/reservation/myreservation', 'myreservation')->name('myreservation');
             }
         );
+        Route::controller(CartController::class)->name('frontend.cart.')->group(
+            function () {
+                Route::get('/cart', 'index')->name('index');
+                Route::get('/cart/create', 'create')->name('create');
+                Route::post('/cart/store/{category}/{id}', 'store')->name('store');
+                Route::get('/cart/edit/{cart}', 'edit')->name('edit');
+                Route::post('/cart/update', 'update')->name('update');
+                Route::get('/cart/destroy/{cart}', 'destroy')->name('delete');
+                Route::get('/cart/status/{cart}', 'status')->name('status');
+                Route::get('/cart/reStore/{id}', 'reStore')->name('reStore');
+                Route::get('/cart/delete/{id}', 'delete')->name('pdelete');
+                Route::get('/cart/checkout', 'checkout')->name('checkout');
+            }
+        );
+        Route::controller(CouponController::class)->name('backend.coupon.')->group(
+            function () {
+                Route::get('/coupon', 'index')->name('index');
+                Route::get('/coupon/create', 'create')->name('create');
+                Route::post('/coupon/store', 'store')->name('store');
+                Route::get('/coupon/edit/{coupon}', 'edit')->name('edit');
+                Route::post('/coupon/update/{coupon}', 'update')->name('update');
+                Route::get('/coupon/destroy/{coupon}', 'destroy')->name('delete');
+                Route::post('/coupon/applyCoupon', 'applyCoupon')->name('applyCoupon');
+                Route::get('/coupon/reStore/{id}', 'reStore')->name('reStore');
+                Route::get('/coupon/delete/{id}', 'delete')->name('pdelete');
+            }
+        );
+        Route::controller(ShippingChargeController::class)->name('backend.shippingcharge.')->group(
+            function () {
+                Route::get('/shippingcharge', 'index')->name('index');
+                Route::get('/shippingcharge/create', 'create')->name('create');
+                Route::post('/shippingcharge/store', 'store')->name('store');
+                Route::get('/shippingcharge/edit/{shippingcharge}', 'edit')->name('edit');
+                Route::post('/shippingcharge/update/{shippingcharge}', 'update')->name('update');
+                Route::get('/shippingcharge/destroy/{shippingcharge}', 'destroy')->name('delete');
+                Route::post('/shippingcharge/applyCharge', 'applyCharge')->name('applyCharge');
+                Route::get('/shippingcharge/reStore/{id}', 'reStore')->name('reStore');
+                Route::get('/shippingcharge/delete/{id}', 'delete')->name('pdelete');
+            }
+        );
     }
 );
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+//Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
 
 
 

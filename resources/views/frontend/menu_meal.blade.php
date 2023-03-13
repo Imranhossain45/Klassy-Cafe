@@ -35,6 +35,8 @@
                 <div class="row">
                   @foreach ($activeBreakfast as $breakfast)
                     <div class="col-lg-6">
+                      <form action="{{ route('frontend.cart.store', ['category'=>'breakfast','id'=>$breakfast->id]) }}" method="POST">
+                        @csrf
                       <div class="row">
                         <div class="left-list">
                           <div class="col-lg-12">
@@ -45,10 +47,17 @@
                               <div class="price">
                                 <h6>${{ $breakfast->price }}</h6>
                               </div>
+                              <div class="text-center mt-3">
+                                <input type="number" class="text-center" name="quantity" min="1" value="1"
+                                  style="width: 80px;font-size:20px;">
+                                <input type="submit" name="" value="Add To Cart"
+                                  style="width: 130px; background: #fb5849; color:white; font-size:20px; border: 1px solid #e3e6e9;">
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                      </form>
                     </div>
                   @endforeach
                 </div>
@@ -57,6 +66,8 @@
                 <div class="row">
                   @foreach ($activeLunch as $lunch)
                     <div class="col-lg-6">
+                      <form action="{{ route('frontend.cart.store', ['category'=>'lunch','id'=>$lunch->id]) }}" method="POST">
+                        @csrf
                       <div class="row">
                         <div class="left-list">
                           <div class="col-lg-12">
@@ -67,10 +78,17 @@
                               <div class="price">
                                 <h6>${{ $lunch->price }}</h6>
                               </div>
+                              <div class="text-center mt-3">
+                                <input type="number" class="text-center" name="quantity" min="1" value="1"
+                                  style="width: 80px;font-size:20px;">
+                                <input type="submit" name="" value="Add To Cart"
+                                  style="width: 130px; background: #fb5849; color:white; font-size:20px; border: 1px solid #e3e6e9;">
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                      </form>
                     </div>
                   @endforeach
                 </div>
@@ -78,22 +96,33 @@
               <article id='tabs-3'>
                 <div class="row">
                   @foreach ($activeDinner as $dinner)
-                  <div class="col-lg-6">
-                    <div class="row">
-                      <div class="left-list">
-                        <div class="col-lg-12">
-                          <div class="tab-item">
-                            <img src="storage/dinner/{{ $dinner->photo }}" alt="">
-                            <h4>{{ $dinner->name }}</h4>
-                            <p>{{ $dinner->description }}</p>
-                            <div class="price">
-                              <h6>${{ $dinner->price }}</h6>
+                    <div class="col-lg-6">
+                      <form action="{{ route('frontend.cart.store', ['category'=>'dinner','id'=>$dinner->id]) }}" method="POST">
+                        @csrf
+                      <div class="row">
+                        <div class="left-list">
+                          <div class="col-lg-12">
+                            
+                            <div class="tab-item">
+                              <img src="storage/dinner/{{ $dinner->photo }}" alt="">
+                              <h4>{{ $dinner->name }}</h4>
+                              <p>{{ $dinner->description }}</p>
+                              <div class="price">
+                                <h6>${{ $dinner->price }}</h6>
+                              </div>
+                              <div class="text-center mt-3">
+                                <input type="number" class="text-center" name="quantity" min="1" value="1"
+                                  style="width: 80px;font-size:20px;">
+                                <input type="submit" name="" value="Add To Cart"
+                                  style="width: 130px; background: #fb5849; color:white; font-size:20px; border: 1px solid #e3e6e9;">
+                              </div>
                             </div>
+                            </form>
                           </div>
                         </div>
                       </div>
+                      </form>
                     </div>
-                  </div>
                   @endforeach
                 </div>
               </article>

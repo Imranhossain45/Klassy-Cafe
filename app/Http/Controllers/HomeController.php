@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Chef;
+use App\Models\Lunch;
+use App\Models\Dinner;
 use App\Models\Contact;
 use App\Models\Breakfast;
 use App\Models\Cake_Pastry;
-use App\Models\Dinner;
-use App\Models\Lunch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-       
     }
 
     /**
@@ -35,6 +35,8 @@ class HomeController extends Controller
         $activeLunch = Lunch::where('status', 'publish')->get();
         $activeDinner = Dinner::where('status', 'publish')->get();
         $activeCake_pastry = Cake_Pastry::where('status', 'publish')->get();
+
+        
         return view('frontend.index', compact('activeChefs', 'activeBreakfast', 'activeDinner', 'activeLunch', 'activeCake_pastry'));
     }
     public function home()
@@ -75,6 +77,6 @@ class HomeController extends Controller
             'phone' => $request->phone,
             'message' => $request->message,
         ]);
-        return back()->with('success','Thanks! Your Message has been sent');
+        return back()->with('success', 'Thanks! Your Message has been sent');
     }
 }

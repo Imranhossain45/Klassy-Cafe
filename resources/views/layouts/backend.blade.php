@@ -138,6 +138,36 @@
           </div>
         </li>
         <!-- Cake_pastry end -->
+        <!-- Coupon Start -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCoupon"
+            aria-expanded="true" aria-controls="collapseCoupon">
+            <i class="fas fa-hamburger"></i>
+            <span>Coupon</span>
+          </a>
+          <div id="collapseCoupon" class="collapse" aria-labelledby="headingPages"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="{{ route('backend.coupon.index') }}">All Coupon</a>
+            </div>
+          </div>
+        </li>
+        <!-- Coupon end -->
+        <!-- Shipping Charge Start -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseShipping_Charge"
+            aria-expanded="true" aria-controls="collapseShipping_Charge">
+            <i class="fas fa-hamburger"></i>
+            <span>Shipping Charge</span>
+          </a>
+          <div id="collapseShipping_Charge" class="collapse" aria-labelledby="headingPages"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="{{ route('backend.shippingcharge.index') }}">All Shipping Charge</a>
+            </div>
+          </div>
+        </li>
+        <!-- Shipping Charge end -->
       @endif
       <!-- Reservation Start -->
       <li class="nav-item">

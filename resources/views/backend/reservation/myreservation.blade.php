@@ -18,6 +18,7 @@
                 <th>Phone</th>
                 <th>Guest</th>
                 <th>Time</th>
+                <th>Date</th>
                 <th>Message</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -32,8 +33,9 @@
                 <td>{{ $myreservation->phone }}</td>
                 <td>{{ $myreservation->guest }}</td>
                 <td>{{ $myreservation->time }}</td>
-                <td>{{ $myreservation->message }}</td>
-                <td>{{ Str::limit($myreservation->status, 20, '...') }}</td>
+                <td>{{ $myreservation->date }}</td>
+                <td>{{ Str::limit($myreservation->message, 20, '...') }}</td>
+                <td>{{ $myreservation->status }}</td>
                 <td>
                   <a href="{{ route('backend.reservation.delete',$myreservation->id) }}" class="btn btn-danger">Delete</a>
                 </td>

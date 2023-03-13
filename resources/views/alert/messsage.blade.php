@@ -24,3 +24,11 @@
     </div>
         
 @endif
+@if (session('warning'))
+    
+    <div class="alert alert-danger alert-dismissible" style="margin-left: 400px;">
+        {{-- <button type="button" class="close" data-dismiss="alert">&times;</button> --}}
+        <strong>Warning!</strong>{{session('warning')}}
+    </div>
+        
+@endif
