@@ -153,10 +153,10 @@ https://templatemo.com/tm-558-klassy-cafe
         <div class="col-lg-4 col-xs-12">
           <div class="right-text-content">
             <ul class="social-icons">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fa-brands fa-facebook"></i></i></a></li>
+              <li><a href="#"><i class="fa-brands fa-twitter"></i></i></a></li>
+              <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+              <li><a href="#"><i class="fa-brands fa-instagram"></i></i></a></li>
             </ul>
           </div>
         </div>

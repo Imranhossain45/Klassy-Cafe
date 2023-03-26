@@ -19,6 +19,7 @@
 
   <!-- Custom styles for this template-->
   <link href="{{ asset('backend/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
 </head>
 
@@ -142,7 +143,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCoupon"
             aria-expanded="true" aria-controls="collapseCoupon">
-            <i class="fas fa-hamburger"></i>
+            <i class="fa-solid fa-dollar-sign"></i>
             <span>Coupon</span>
           </a>
           <div id="collapseCoupon" class="collapse" aria-labelledby="headingPages"
@@ -157,7 +158,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseShipping_Charge"
             aria-expanded="true" aria-controls="collapseShipping_Charge">
-            <i class="fas fa-hamburger"></i>
+            <i class="fa-solid fa-dollar-sign"></i>
             <span>Shipping Charge</span>
           </a>
           <div id="collapseShipping_Charge" class="collapse" aria-labelledby="headingPages"

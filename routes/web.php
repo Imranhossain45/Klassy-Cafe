@@ -42,9 +42,9 @@ Route::controller(HomeController::class)->name('frontend.')->group(function () {
 });
 
 
-Route::middleware(['auth'])->group(
+Route::middleware('auth', 'verified')->group(
     function () {
-        Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth', 'verified');
+        Route::get('/home', [HomeController::class, 'home'])->name('home');
 
         Route::controller(ChefController::class)->name('backend.chef.')->group(function () {
             Route::get('/chef', 'index')->name('index');
